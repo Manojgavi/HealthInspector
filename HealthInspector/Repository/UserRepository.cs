@@ -23,7 +23,9 @@ namespace HealthInspector.Repository
         }
         public string GetRole(string userId)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m => m.UserId == userId);
+            return user.Role;
         }
 
         public string PostUser(UserViewModel userViewModel)
@@ -40,12 +42,30 @@ namespace HealthInspector.Repository
 
         public bool UserExists(string userId)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user=dbContext.Users.FirstOrDefault(m => m.UserId == userId);
+            if(user!=null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool UserExists(string userId, string password)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m => m.UserId == userId && m.Password==password);
+            if (user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
