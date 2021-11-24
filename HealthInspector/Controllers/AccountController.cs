@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HealthInspector.IControllerServices;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HealthInspector.Controllers
 {
@@ -24,25 +28,13 @@ namespace HealthInspector.Controllers
             this.mapper = mapper;
             this.userServices = userServices;
         }
-        // GET: AccountController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: AccountController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AccountController/Create
+       
         public ActionResult Register()
         {
             return View();
         }
 
-        // POST: AccountController/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserViewModel user)
@@ -53,73 +45,103 @@ namespace HealthInspector.Controllers
                 {
                    
                     user.UserId = userServices.GetUserId(user.FirstName, user.PhoneNumber);
-
-                   
-                    string userId = userRepository.PostUser(user);
-                    if(user.UserId==userId)
+                    if (!userRepository.UserExists(user.UserId))
                     {
-                        return Content("User Id created sucessfully, please remember this user id for login : "+userId);
+                        string userId = userRepository.PostUser(user);
+
+                        if (user.UserId == userId)
+                        {
+                            return Content("User Id created sucessfully, please remember this user id for login : " + userId);
+                        }
+                        else
+                        {
+                            return Content("Something went wrong please try again");
+                        }
                     }
                     else
                     {
-                        return Content("Something went wrong please try again");
+                        return Content("User already exist in database");
                     }
+
+                        
                 }
                 
 
                 return View(user);
             }
-            catch
+            catch(Exception ex)
             {
-                return View(user);
+                return Content(ex.Message);
             }
         }
 
-        // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
+        
+        public ActionResult Login(string returnUrl)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
-        public ActionResult Success(string userId)
-        {
-            return View(userId);
-        }
-
-        // POST: AccountController/Edit/5
+       
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel,string returnUrl)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if(ModelState.IsValid)
+                {
+                    ClaimsIdentity identity = null;
+                    bool IsAuthenticate = false;
+                    if (userRepository.UserExists(loginViewModel.UserId, loginViewModel.Password))
+                    {
+                        identity = new ClaimsIdentity(new[]
+                        {
+                           new Claim(ClaimTypes.Name,loginViewModel.UserId),
+                           new Claim(ClaimTypes.Role,userRepository.GetRole(loginViewModel.UserId))
+                       },CookieAuthenticationDefaults.AuthenticationScheme) ;
+                        IsAuthenticate = true;
+                    }
+
+                    if (IsAuthenticate)
+                    {
+                        var principal = new ClaimsPrincipal(identity);
+                        await HttpContext.SignInAsync(principal);
+                        if (returnUrl == null)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            return RedirectToAction(returnUrl);
+                        }
+                        
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "The user name or password is incorrect");
+                        return View(loginViewModel);
+                    }
+                }
+
+
+
+                return View(loginViewModel);
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                return Content(ex.Message);
             }
         }
 
-        // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
+        [Authorize]
+        public async Task<ActionResult> Logout()
         {
-            return View();
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index","Home");
         }
 
-        // POST: AccountController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }
