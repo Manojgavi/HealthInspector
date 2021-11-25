@@ -141,7 +141,87 @@ namespace HealthInspector.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index","Home");
         }
+        public ActionResult ForgotUserId()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotUserId(ForgotUserIdViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                string userId = userRepository.GetUserId(model);
+                if(userId==null)
+                {
+                    ModelState.AddModelError(string.Empty,"Wrong Details, Please verify and try again");
+                    return View(model);
+                }
+                else
+                {
+                    return Content("Your UserId Is : " + userId);
+                }
+                
+            }
+            else
+            {
+                return View(model);
+            }
+            
+        }
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool correct = userRepository.IsCorrect(model);
+                
+                if (correct)
+                {
+                    TempData["UserId"] = model.UserId;
+                    return RedirectToAction("ChangePassword","Account");
+                    
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Wrong Details, Please verify and try again");
+                    return View(model);
+                }
 
-       
+            }
+            else
+            {
+                return View(model);
+            }
+
+        }
+        
+        public ActionResult ChangePassword()
+        {
+            ChangePasswordViewModel viewModel = new ChangePasswordViewModel();
+            viewModel.UserId = TempData["UserId"].ToString();
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                userRepository.ChangePassword(model);
+                return RedirectToAction("Login","Account");
+            }
+            else
+            {
+                return View(model);
+            }
+            
+        }
+
     }
 }
