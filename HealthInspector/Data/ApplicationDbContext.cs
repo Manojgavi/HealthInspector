@@ -16,5 +16,8 @@ namespace HealthInspector.Data
         public DbSet<Locality> Localities { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
 
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Questionnaire> Questionnaires  { get; set; }
+
     }
 }

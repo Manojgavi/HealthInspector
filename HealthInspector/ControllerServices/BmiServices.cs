@@ -19,6 +19,6 @@ namespace HealthInspector.ControllerServices
 
                 return bmi;
 
-            }
+        }
     }
 }

@@ -18,8 +18,10 @@ namespace HealthInspector
             CreateMap<Bmi, BmiViewModel>().ReverseMap();
 
             CreateMap<Clinic, ClinicViewModel>().ReverseMap();
-           
 
+            CreateMap<Feedback, FeedbackViewModel>().ReverseMap();
+
+            CreateMap<Questionnaire, QuestionnaireViewModel>().ReverseMap();
         }
     }
 }

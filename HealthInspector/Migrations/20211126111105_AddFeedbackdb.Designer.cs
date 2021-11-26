@@ -4,14 +4,16 @@ using HealthInspector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthInspector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211126111105_AddFeedbackdb")]
+    partial class AddFeedbackdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,6 +84,21 @@ namespace HealthInspector.Migrations
                     b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Question1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question5")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
@@ -106,36 +123,6 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Localities");
-                });
-
-            modelBuilder.Entity("HealthInspector.Models.Questionnaire", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Question1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Question2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Question3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Question4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Question5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Questionnaires");
                 });
 
             modelBuilder.Entity("HealthInspector.Models.User", b =>
