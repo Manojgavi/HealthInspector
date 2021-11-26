@@ -8,7 +8,8 @@ namespace HealthInspector.Models
 {
     public class Clinic
     {
-        public int id { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string ClinicName { get; set; }
         public string Address{ get; set; }
         public string ClinicId{ get; set; }
@@ -16,7 +17,7 @@ namespace HealthInspector.Models
         public  string FacilitiesAvailable { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Website { get; set; }
         public int LocalityId{ get; set; }
         public Locality  Locality{ get; set; }

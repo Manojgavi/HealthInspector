@@ -22,7 +22,7 @@ namespace HealthInspector.Repository
         public Clinic GetClinic(int Id)
         {
             Clinic clinic = new Clinic();
-            clinic = dbContext.Clinics.FirstOrDefault(m => m.id == Id);
+            clinic = dbContext.Clinics.FirstOrDefault(m => m.Id == Id);
             return clinic;
         }
 

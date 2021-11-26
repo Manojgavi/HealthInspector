@@ -36,6 +36,7 @@ namespace HealthInspector
             services.AddAutoMapper(typeof(ApiMappings));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
+            services.AddScoped<IClinicServices, ClinicServices>();
             services.AddScoped<ILocalityRepository, LocalityRepository>();
             services.AddScoped<IClinicRepository, ClinicRepository>();
 
