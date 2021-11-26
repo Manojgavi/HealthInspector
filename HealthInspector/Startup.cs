@@ -4,6 +4,7 @@ using HealthInspector.Data;
 using HealthInspector.IControllerServices;
 using HealthInspector.IRepository;
 using HealthInspector.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,8 +36,23 @@ namespace HealthInspector
             services.AddAutoMapper(typeof(ApiMappings));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
+
             services.AddScoped<IBmiRepository, BmiRepository>();
             services.AddScoped<IBmiServices, BmiServices>();
+
+            services.AddScoped<IClinicServices, ClinicServices>();
+            services.AddScoped<ILocalityRepository, LocalityRepository>();
+            services.AddScoped<IClinicRepository, ClinicRepository>();
+
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,8 +72,13 @@ namespace HealthInspector
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
+
+            //app.UseCookiePolicy();
+
+            
 
             app.UseEndpoints(endpoints =>
             {

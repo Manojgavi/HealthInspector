@@ -21,9 +21,68 @@ namespace HealthInspector.Repository
             this.mapper = mapper;
             this.dbContext = dbContext;
         }
+
+        public void ChangePassword(ChangePasswordViewModel model)
+        {
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m=>m.UserId==model.UserId);
+            user.Password = model.Password;
+            dbContext.Users.Update(user);
+            dbContext.SaveChanges();
+
+        }
+
         public string GetRole(string userId)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m => m.UserId == userId);
+            return user.Role;
+        }
+
+        public string GetUserId(ForgotUserIdViewModel model)
+        {
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m => m.PhoneNumber == model.PhoneNumber 
+            );
+            if(user!=null)
+            {
+                if (user.Answer1 == model.Answer1 && user.Answer2 == model.Answer2 && user.Answer3 == model.Answer3)
+                {
+                    return user.UserId;
+                }
+                else
+                {
+                    return null;
+                }
+                    
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool IsCorrect(ForgotPasswordViewModel model)
+        {
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m => m.UserId == model.UserId);
+            
+            if (user != null)
+            {
+                if(user.Answer1==model.Answer1 && user.Answer2==model.Answer2 && user.Answer3==model.Answer3)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public string PostUser(UserViewModel userViewModel)
@@ -40,12 +99,30 @@ namespace HealthInspector.Repository
 
         public bool UserExists(string userId)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user=dbContext.Users.FirstOrDefault(m => m.UserId == userId);
+            if(user!=null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool UserExists(string userId, string password)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user = dbContext.Users.FirstOrDefault(m => m.UserId == userId && m.Password==password);
+            if (user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
