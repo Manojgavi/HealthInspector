@@ -4,14 +4,16 @@ using HealthInspector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthInspector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211125151347_BMIaddmigration1")]
+    partial class BMIaddmigration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,15 +21,14 @@ namespace HealthInspector.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-
             modelBuilder.Entity("HealthInspector.Models.Bmi", b =>
-            {
-             b.Property<int>("Id")
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            b.Property<double>("Height")
+                    b.Property<double>("Height")
                         .HasColumnType("float");
 
                     b.Property<double>("Weight")
@@ -36,60 +37,6 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Bmis");
-});
-            modelBuilder.Entity("HealthInspector.Models.Clinic", b =>
-
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-
-                    
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClinicId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClinicName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FacilitiesAvailable")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LocalityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocalityId");
-
-                    b.ToTable("Clinics");
-                });
-
-            modelBuilder.Entity("HealthInspector.Models.Locality", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Zipcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Localities");
-
                 });
 
             modelBuilder.Entity("HealthInspector.Models.User", b =>
@@ -138,17 +85,6 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("HealthInspector.Models.Clinic", b =>
-                {
-                    b.HasOne("HealthInspector.Models.Locality", "Locality")
-                        .WithMany()
-                        .HasForeignKey("LocalityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Locality");
                 });
 #pragma warning restore 612, 618
         }

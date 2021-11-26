@@ -36,6 +36,10 @@ namespace HealthInspector
             services.AddAutoMapper(typeof(ApiMappings));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
+
+            services.AddScoped<IBmiRepository, BmiRepository>();
+            services.AddScoped<IBmiServices, BmiServices>();
+
             services.AddScoped<IClinicServices, ClinicServices>();
             services.AddScoped<ILocalityRepository, LocalityRepository>();
             services.AddScoped<IClinicRepository, ClinicRepository>();
@@ -48,6 +52,7 @@ namespace HealthInspector
             });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
