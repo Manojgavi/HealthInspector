@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Mail;
+using System.Net;
 
 namespace HealthInspector.Controllers
 {
@@ -51,7 +53,11 @@ namespace HealthInspector.Controllers
 
                         if (user.UserId == userId)
                         {
+                            #region mail sending
+                            SendVerificationLinkEmail(user.UserId,user.Email);
+                            #endregion
                             return Content("User Id created sucessfully, please remember this user id for login : " + userId);
+                           
                         }
                         else
                         {
@@ -221,6 +227,36 @@ namespace HealthInspector.Controllers
                 return View(model);
             }
             
+        }
+        [NonAction]
+        public void SendVerificationLinkEmail(string userId, string Email)
+        {
+            var fromEmail = new MailAddress("greeshother@gmail.com");
+            var toEmail = new MailAddress(Email);
+            var fromEmailPassword = "othergreesh";
+            string subject = "You are successfully registered for Vaccination";
+
+            string body = "Hi " + "<br/><br/>We are excited to tell you that you are successfully registered in our website. Your user id is : <br/>"+userId;
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+
+                smtp.Send(message);
+
         }
 
     }

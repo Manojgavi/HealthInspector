@@ -29,7 +29,7 @@ namespace HealthInspector.Repository
         public Locality GetLocality(int id)
         {
             Locality locality = new Locality();
-            locality = dbContext.Localities.FirstOrDefault(m => m.id == id);
+            locality = dbContext.Localities.FirstOrDefault(m => m.Id == id);
             return locality;
         }
 

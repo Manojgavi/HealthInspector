@@ -14,6 +14,7 @@ namespace HealthInspector
         public ApiMappings()
         {
             CreateMap<User, UserViewModel>().ReverseMap();
+            CreateMap<Clinic, ClinicViewModel>().ReverseMap();
            
         }
     }
