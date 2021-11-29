@@ -13,7 +13,7 @@ namespace HealthInspector.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int ClinicId { get; set; }
-        public Clinic Clinic { get; set; }
+        public List<Clinic> Clinic { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
     }

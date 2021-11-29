@@ -16,5 +16,6 @@ namespace HealthInspector.IRepository
         string GetUserId(ForgotUserIdViewModel model);
         bool IsCorrect(ForgotPasswordViewModel model);
         void ChangePassword(ChangePasswordViewModel model);
+        object GetId(string userId);
     }
 }
