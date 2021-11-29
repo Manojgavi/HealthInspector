@@ -1,5 +1,6 @@
 ﻿using HealthInspector.IRepository;
 using HealthInspector.Models;
+using HealthInspector.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,13 +25,14 @@ namespace HealthInspector.Controllers
         }
         public IActionResult UpdateSpeciality()
         {
-            DoctorSpecality doctorSpecality = new DoctorSpecality();
+            DoctorSpecalityVm doctorSpecality = new DoctorSpecalityVm();
             doctorSpecality.UserId = int.Parse(TempData["Id"].ToString());
+
             return View(doctorSpecality);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateSpeciality(DoctorSpecality doctorSpecality)
+        public IActionResult UpdateSpeciality(DoctorSpecalityVm doctorSpecality)
         {
             if(ModelState.IsValid)
             {
