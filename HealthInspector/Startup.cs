@@ -43,6 +43,8 @@ namespace HealthInspector
             services.AddScoped<IClinicServices, ClinicServices>();
             services.AddScoped<ILocalityRepository, LocalityRepository>();
             services.AddScoped<IClinicRepository, ClinicRepository>();
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IDoctorServices, DoctorServices>();
 
 
             services.Configure<CookiePolicyOptions>(options =>
