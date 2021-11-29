@@ -13,12 +13,26 @@ namespace HealthInspector.Repository
     public class DoctorRepository : IDoctorRepository
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IMapper mapper;
+        
 
-        public DoctorRepository(ApplicationDbContext dbContext,IMapper mapper)
+        public DoctorRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.mapper = mapper;
+            
+        }
+
+        public List<DoctorAvailability> GetDoctorAvailabilities(int id)
+        {
+            List<DoctorAvailability> doctorAvailabilities = new List<DoctorAvailability>();
+            doctorAvailabilities = dbContext.DoctorAvailabilities.Where(m => m.UserId == id).ToList();
+            return doctorAvailabilities;
+        }
+
+        public DoctorSpecality GetDoctorSpeciality(int id)
+        {
+            DoctorSpecality doctorSpecality = new DoctorSpecality();
+            doctorSpecality = dbContext.DoctorSpecalities.FirstOrDefault(m => m.UserId == id);
+            return doctorSpecality;
         }
 
         public void PostDoctorAvailability(DoctorAvailability doctorAvailability)
@@ -27,10 +41,9 @@ namespace HealthInspector.Repository
             dbContext.SaveChanges();
         }
 
-        public void PostDoctorSpeciality(DoctorSpecalityVm doctorSpecalityvm)
+        public void PostDoctorSpeciality(DoctorSpecality doctorSpecality)
         {
-            DoctorSpecality doctorSpecality = new DoctorSpecality();
-            doctorSpecality = mapper.Map<DoctorSpecality>(doctorSpecalityvm);
+            
             dbContext.DoctorSpecalities.Add(doctorSpecality);
             dbContext.SaveChanges();
         }

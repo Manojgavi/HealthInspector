@@ -1,5 +1,5 @@
 ﻿using HealthInspector.Models;
-using HealthInspector.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,9 @@ namespace HealthInspector.IRepository
 {
     public interface IDoctorRepository
     {
-        void PostDoctorSpeciality(DoctorSpecalityVm doctorSpecality);
+        void PostDoctorSpeciality(DoctorSpecality doctorSpecality);
         void PostDoctorAvailability(DoctorAvailability doctorAvailability);
+        DoctorSpecality GetDoctorSpeciality(int id);
+        List<DoctorAvailability> GetDoctorAvailabilities(int id);
     }
 }

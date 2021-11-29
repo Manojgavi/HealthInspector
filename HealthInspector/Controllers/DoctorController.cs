@@ -1,4 +1,5 @@
-﻿using HealthInspector.IRepository;
+﻿using HealthInspector.IControllerServices;
+using HealthInspector.IRepository;
 using HealthInspector.Models;
 using HealthInspector.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,21 +15,41 @@ namespace HealthInspector.Controllers
     public class DoctorController : Controller
     {
         private readonly IDoctorRepository doctorRepository;
+        private readonly IDoctorServices doctorServices;
 
-        public DoctorController(IDoctorRepository doctorRepository)
+        public DoctorController(IDoctorRepository doctorRepository,IDoctorServices doctorServices)
         {
             this.doctorRepository = doctorRepository;
+            this.doctorServices = doctorServices;
         }
         public IActionResult Index()
         {
-            return View();
+            try
+            {
+                List<DoctorDataViewModel> doctorDataViewModels = new List<DoctorDataViewModel>();
+                doctorDataViewModels = doctorServices.GetDoctorData(int.Parse(TempData["Id"].ToString()));
+                return View(doctorDataViewModels);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("Logout", "Account");
+            }
+            
         }
         public IActionResult UpdateSpeciality()
         {
-            DoctorSpecalityVm doctorSpecality = new DoctorSpecalityVm();
-            doctorSpecality.UserId = int.Parse(TempData["Id"].ToString());
+            try
+            {
+                DoctorSpecalityVm doctorSpecality = new DoctorSpecalityVm();
+                doctorSpecality.UserId = int.Parse(TempData["Id"].ToString());
 
-            return View(doctorSpecality);
+                return View(doctorSpecality);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("Logout", "Account");
+            }
+            
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -36,24 +57,33 @@ namespace HealthInspector.Controllers
         {
             if(ModelState.IsValid)
             {
-                doctorRepository.PostDoctorSpeciality(doctorSpecality);
+                doctorServices.PostDoctorSpeciality(doctorSpecality);
                 return RedirectToAction("Index");
             }
             return View(doctorSpecality);
         }
         public IActionResult AddAvailability()
         {
-            DoctorAvailability doctorAvailability = new DoctorAvailability();
-            doctorAvailability.UserId = int.Parse(TempData["Id"].ToString());
-            return View(doctorAvailability);
+            try
+            {
+                DoctorAvailabilityVm doctorAvailability = new DoctorAvailabilityVm();
+                doctorAvailability = doctorServices.GenerateAvailability();
+                doctorAvailability.UserId = int.Parse(TempData["Id"].ToString());
+                return View(doctorAvailability);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("Logout", "Account");
+            }
+           
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddAvailability(DoctorAvailability doctorAvailability)
+        public IActionResult AddAvailability(DoctorAvailabilityVm doctorAvailability)
         {
             if (ModelState.IsValid)
             {
-                doctorRepository.PostDoctorAvailability(doctorAvailability);
+                doctorServices.PostDoctorAvailability(doctorAvailability);
                 return RedirectToAction("Index");
             }
             return View(doctorAvailability);
