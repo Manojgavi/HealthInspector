@@ -53,6 +53,9 @@ namespace HealthInspector.Migrations
                     b.Property<string>("ClinicName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DoctorAvailabilityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FacilitiesAvailable")
                         .HasColumnType("nvarchar(max)");
 
@@ -67,19 +70,22 @@ namespace HealthInspector.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DoctorAvailabilityId");
+
                     b.HasIndex("LocalityId");
 
                     b.ToTable("Clinics");
                 });
 
+
             modelBuilder.Entity("HealthInspector.Models.Feedback", b =>
-                {
-                    b.Property<int>("Id")
+            {
+            b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DoctorId")
+            b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Review")
@@ -91,6 +97,60 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Feedbacks");
+            });
+
+            modelBuilder.Entity("HealthInspector.Models.DoctorAvailability", b =>
+
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+
+                    
+
+                    b.Property<int>("ClinicId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DoctorAvailabilities");
+                });
+
+            modelBuilder.Entity("HealthInspector.Models.DoctorSpecality", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Speciality")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DoctorSpecalities");
+
                 });
 
             modelBuilder.Entity("HealthInspector.Models.Locality", b =>
@@ -106,6 +166,7 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Localities");
+
                 });
 
             modelBuilder.Entity("HealthInspector.Models.Questionnaire", b =>
@@ -136,6 +197,7 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Questionnaires");
+
                 });
 
             modelBuilder.Entity("HealthInspector.Models.User", b =>
@@ -188,6 +250,10 @@ namespace HealthInspector.Migrations
 
             modelBuilder.Entity("HealthInspector.Models.Clinic", b =>
                 {
+                    b.HasOne("HealthInspector.Models.DoctorAvailability", null)
+                        .WithMany("Clinic")
+                        .HasForeignKey("DoctorAvailabilityId");
+
                     b.HasOne("HealthInspector.Models.Locality", "Locality")
                         .WithMany()
                         .HasForeignKey("LocalityId")
@@ -195,6 +261,33 @@ namespace HealthInspector.Migrations
                         .IsRequired();
 
                     b.Navigation("Locality");
+                });
+
+            modelBuilder.Entity("HealthInspector.Models.DoctorAvailability", b =>
+                {
+                    b.HasOne("HealthInspector.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HealthInspector.Models.DoctorSpecality", b =>
+                {
+                    b.HasOne("HealthInspector.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HealthInspector.Models.DoctorAvailability", b =>
+                {
+                    b.Navigation("Clinic");
                 });
 #pragma warning restore 612, 618
         }
