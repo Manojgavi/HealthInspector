@@ -19,10 +19,16 @@ namespace HealthInspector
 
             CreateMap<Clinic, ClinicViewModel>().ReverseMap();
 
+
+
             CreateMap<DoctorSpecality, DoctorSpecalityVm>().ReverseMap();
 
             CreateMap<DoctorAvailability, DoctorAvailabilityVm>().ReverseMap();
 
+
+            CreateMap<Feedback, FeedbackViewModel>().ReverseMap();
+
+            CreateMap<Questionnaire, QuestionnaireViewModel>().ReverseMap();
         }
     }
 }
