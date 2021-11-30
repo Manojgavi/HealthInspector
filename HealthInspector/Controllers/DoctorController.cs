@@ -30,7 +30,7 @@ namespace HealthInspector.Controllers
                 doctorDataViewModels = doctorServices.GetDoctorData(int.Parse(TempData["Id"].ToString()));
                 return View(doctorDataViewModels);
             }
-            catch(Exception ex)
+            catch(Exception )
             {
                 return RedirectToAction("Logout", "Account");
             }
@@ -45,7 +45,7 @@ namespace HealthInspector.Controllers
 
                 return View(doctorSpecality);
             }
-            catch(Exception ex)
+            catch(Exception )
             {
                 return RedirectToAction("Logout", "Account");
             }
@@ -71,7 +71,7 @@ namespace HealthInspector.Controllers
                 doctorAvailability.UserId = int.Parse(TempData["Id"].ToString());
                 return View(doctorAvailability);
             }
-            catch(Exception ex)
+            catch(Exception )
             {
                 return RedirectToAction("Logout", "Account");
             }
