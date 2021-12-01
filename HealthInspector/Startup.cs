@@ -50,6 +50,7 @@ namespace HealthInspector
             services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<IDoctorServices, DoctorServices>();
 
+            services.AddScoped<ISearchServices, SearchServices>();
 
 
             services.Configure<CookiePolicyOptions>(options =>

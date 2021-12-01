@@ -133,5 +133,12 @@ namespace HealthInspector.Repository
                 return false;
             }
         }
+        public List<User> GetDoctors()
+        {
+            List<User> users = new List<User>();
+            users = dbContext.Users.Where(m => m.Role == "Doctor").ToList();
+            return users;
+        }
+
     }
 }
