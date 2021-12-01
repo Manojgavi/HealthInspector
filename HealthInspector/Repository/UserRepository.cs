@@ -34,10 +34,7 @@ namespace HealthInspector.Repository
 
         public object GetId(string userId)
         {
-            User user = new User();
-            user = dbContext.Users.FirstOrDefault(m => m.UserId == userId);
-            return user.Id;
-
+            throw new NotImplementedException();
         }
 
         public string GetRole(string userId)
@@ -111,7 +108,6 @@ namespace HealthInspector.Repository
             user=dbContext.Users.FirstOrDefault(m => m.UserId == userId);
             if(user!=null)
             {
-                
                 return true;
             }
             else

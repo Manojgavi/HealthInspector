@@ -53,9 +53,9 @@ namespace HealthInspector.Controllers
 
                         if (user.UserId == userId)
                         {
-                            #region mail sending
-                            SendVerificationLinkEmail(user.UserId,user.Email);
-                            #endregion
+                           // #region mail sending
+                           // SendVerificationLinkEmail(user.UserId,user.Email);
+                           // #endregion
                             return Content("User Id created sucessfully, please remember this user id for login : " + userId);
                            
                         }
