@@ -77,38 +77,12 @@ namespace HealthInspector.Migrations
                     b.ToTable("Clinics");
                 });
 
-
-            modelBuilder.Entity("HealthInspector.Models.Feedback", b =>
-            {
-            b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            b.Property<string>("DoctorId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Review")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Feedbacks");
-            });
-
             modelBuilder.Entity("HealthInspector.Models.DoctorAvailability", b =>
-
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-
-                    
 
                     b.Property<int>("ClinicId")
                         .HasColumnType("int");
@@ -150,7 +124,27 @@ namespace HealthInspector.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("DoctorSpecalities");
+                });
 
+            modelBuilder.Entity("HealthInspector.Models.Feedback", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("HealthInspector.Models.Locality", b =>
@@ -166,7 +160,6 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Localities");
-
                 });
 
             modelBuilder.Entity("HealthInspector.Models.Questionnaire", b =>
@@ -197,7 +190,6 @@ namespace HealthInspector.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Questionnaires");
-
                 });
 
             modelBuilder.Entity("HealthInspector.Models.User", b =>
