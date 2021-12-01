@@ -13,5 +13,7 @@ namespace HealthInspector.IRepository
         void PostDoctorAvailability(DoctorAvailability doctorAvailability);
         DoctorSpecality GetDoctorSpeciality(int id);
         List<DoctorAvailability> GetDoctorAvailabilities(int id);
+        List<DoctorAvailability> GetDoctorAvailabilities();
+        List<DoctorSpecality> GetDoctorSpecialities();
     }
 }

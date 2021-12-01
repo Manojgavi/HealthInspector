@@ -28,6 +28,20 @@ namespace HealthInspector.Repository
             return doctorAvailabilities;
         }
 
+        public List<DoctorAvailability> GetDoctorAvailabilities()
+        {
+            List<DoctorAvailability> doctorAvailabilities = new List<DoctorAvailability>();
+            doctorAvailabilities = dbContext.DoctorAvailabilities.ToList();
+            return doctorAvailabilities;
+        }
+
+        public List<DoctorSpecality> GetDoctorSpecialities()
+        {
+            List<DoctorSpecality> doctorSpecality = new List<DoctorSpecality>();
+            doctorSpecality = dbContext.DoctorSpecalities.ToList();
+            return doctorSpecality;
+        }
+
         public DoctorSpecality GetDoctorSpeciality(int id)
         {
             DoctorSpecality doctorSpecality = new DoctorSpecality();

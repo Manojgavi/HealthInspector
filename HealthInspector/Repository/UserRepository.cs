@@ -32,6 +32,13 @@ namespace HealthInspector.Repository
 
         }
 
+        public List<User> GetDoctors()
+        {
+            List<User> users = new List<User>();
+            users = dbContext.Users.Where(m => m.Role == "Doctor").ToList();
+            return users;
+        }
+
         public object GetId(string userId)
         {
             User user = new User();
