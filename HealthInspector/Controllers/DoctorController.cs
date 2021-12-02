@@ -3,6 +3,7 @@ using HealthInspector.IRepository;
 using HealthInspector.Models;
 using HealthInspector.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,17 +17,20 @@ namespace HealthInspector.Controllers
     {
         private readonly IDoctorRepository doctorRepository;
         private readonly IDoctorServices doctorServices;
+        private readonly IAppointmentRepository appointmentRepository;
 
-        public DoctorController(IDoctorRepository doctorRepository,IDoctorServices doctorServices)
+        public DoctorController(IDoctorRepository doctorRepository,IDoctorServices doctorServices,IAppointmentRepository appointmentRepository)
         {
             this.doctorRepository = doctorRepository;
             this.doctorServices = doctorServices;
+            this.appointmentRepository = appointmentRepository;
         }
         public IActionResult Index()
         {
             try
             {
                 List<DoctorDataViewModel> doctorDataViewModels = new List<DoctorDataViewModel>();
+                int a = (int)HttpContext.Session.GetInt32("SessionId");
                 doctorDataViewModels = doctorServices.GetDoctorData(int.Parse(TempData["Id"].ToString()));
                 return View(doctorDataViewModels);
             }
@@ -88,6 +92,22 @@ namespace HealthInspector.Controllers
             }
             return View(doctorAvailability);
         }
-
+        public IActionResult Appointments()
+        {
+            List<AppointmentDataVm> appointmentDataVms = new List<AppointmentDataVm>();
+            appointmentDataVms = doctorServices.GetAppointmentDetails((int)HttpContext.Session.GetInt32("SessionId"));
+            return View(appointmentDataVms);
+        }
+        public IActionResult Approve(int id)
+        {
+            appointmentRepository.Approve(id);
+            doctorServices.GeneratePatientRecord(id);
+            return RedirectToAction("Appointments");
+        }
+        public IActionResult Reject(int id)
+        {
+            appointmentRepository.Reject(id);
+            return RedirectToAction("Appointments");
+        }
     }
 }

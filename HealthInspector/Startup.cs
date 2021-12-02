@@ -51,7 +51,10 @@ namespace HealthInspector
             services.AddScoped<IDoctorServices, DoctorServices>();
 
             services.AddScoped<ISearchServices, SearchServices>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
+            services.AddScoped<IPatientServices, PatientServices>();
+            services.AddScoped<ITreatementRepository, TreatementRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -60,6 +63,10 @@ namespace HealthInspector
             });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);//You can set Time   
+            });
 
         }
 
@@ -78,7 +85,7 @@ namespace HealthInspector
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
 

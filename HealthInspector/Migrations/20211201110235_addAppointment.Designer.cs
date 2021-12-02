@@ -4,14 +4,16 @@ using HealthInspector.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthInspector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211201110235_addAppointment")]
+    partial class addAppointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,11 +34,7 @@ namespace HealthInspector.Migrations
                     b.Property<int>("DoctorAvailabilityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -222,47 +220,6 @@ namespace HealthInspector.Migrations
                     b.ToTable("Questionnaires");
                 });
 
-            modelBuilder.Entity("HealthInspector.Models.Treatment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AppointmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Diagnosis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FrequencyRevisit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("NextRevisitDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RevisitRequired")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Symptoms")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TreatmentPlanned")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.ToTable("Treatments");
-                });
-
             modelBuilder.Entity("HealthInspector.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -357,17 +314,6 @@ namespace HealthInspector.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("HealthInspector.Models.Treatment", b =>
-                {
-                    b.HasOne("HealthInspector.Models.Appointment", "Appointment")
-                        .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Appointment");
                 });
 
             modelBuilder.Entity("HealthInspector.Models.DoctorAvailability", b =>

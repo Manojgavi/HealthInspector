@@ -140,5 +140,11 @@ namespace HealthInspector.Repository
             return users;
         }
 
+        public List<User> GetPatients()
+        {
+            List<User> users = new List<User>();
+            users = dbContext.Users.Where(m => m.Role == "Patient").ToList();
+            return users;
+        }
     }
 }

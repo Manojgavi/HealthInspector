@@ -24,6 +24,8 @@ namespace HealthInspector.Controllers
         private readonly IMapper mapper;
         private readonly IUserServices userServices;
 
+        //public string SessionId { get; private set; }
+
         public AccountController(IMapper mapper,IUserRepository userRepository,IUserServices userServices)
         {
             this.userRepository = userRepository;
@@ -53,9 +55,9 @@ namespace HealthInspector.Controllers
 
                         if (user.UserId == userId)
                         {
-                            #region mail sending
-                            SendVerificationLinkEmail(user.UserId,user.Email);
-                            #endregion
+                            //#region mail sending
+                            //SendVerificationLinkEmail(user.UserId,user.Email);
+                            //#endregion
                             return Content("User Id created sucessfully, please remember this user id for login : " + userId);
                            
                         }
@@ -103,6 +105,7 @@ namespace HealthInspector.Controllers
                     if (userRepository.UserExists(loginViewModel.UserId, loginViewModel.Password))
                     {
                         TempData["Id"] = userRepository.GetId(loginViewModel.UserId);
+                        HttpContext.Session.SetInt32("SessionId", (int)userRepository.GetId(loginViewModel.UserId));
                         identity = new ClaimsIdentity(new[]
                         {
                            new Claim(ClaimTypes.Name,loginViewModel.UserId),
