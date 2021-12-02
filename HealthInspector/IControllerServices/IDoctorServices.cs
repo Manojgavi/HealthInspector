@@ -1,4 +1,5 @@
-﻿using HealthInspector.ViewModels;
+﻿using HealthInspector.Models;
+using HealthInspector.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace HealthInspector.IControllerServices
         DoctorAvailabilityVm GenerateAvailability();
 
         List<DoctorDataViewModel> GetDoctorData(int id);
+        List<AppointmentDataVm> GetAppointmentDetails(int id);
+        void GeneratePatientRecord(int id);
     }
 }

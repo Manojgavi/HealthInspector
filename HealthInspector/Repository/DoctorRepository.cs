@@ -60,5 +60,19 @@ namespace HealthInspector.Repository
             doctorSpecality = dbContext.DoctorSpecalities.ToList();
             return doctorSpecality;
         }
+
+        public List<DoctorAvailability> GetDoctorAvailability(int id)
+        {
+            List<DoctorAvailability> doctorAvailabilities = new List<DoctorAvailability>();
+            doctorAvailabilities = dbContext.DoctorAvailabilities.Where(m=>m.UserId==id).ToList();
+            return doctorAvailabilities;
+        }
+
+        public DoctorAvailability GetDoctorAvailabilityById(int id)
+        {
+            DoctorAvailability doctorAvailability = new DoctorAvailability();
+            doctorAvailability = dbContext.DoctorAvailabilities.FirstOrDefault(m => m.Id == id);
+            return doctorAvailability;
+        }
     }
 }

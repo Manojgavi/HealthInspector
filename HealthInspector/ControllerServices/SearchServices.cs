@@ -56,7 +56,7 @@ namespace HealthInspector.ControllerServices
                           join locality in localities on clinic.LocalityId equals locality.Id
                           select new
                           {
-                              Id = user.Id,
+                              Id = availability.Id,
                               DoctorName = user.FirstName + " " + user.LastName,
                               Speciality = speciality.Speciality,
                               Day = availability.Day,

@@ -22,5 +22,9 @@ namespace HealthInspector.Data
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Questionnaire> Questionnaires  { get; set; }
 
+        public DbSet<Appointment> Appointments { get; set; }
+
+        public DbSet<Treatment> Treatments { get; set; }
+
     }
 }
