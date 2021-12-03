@@ -74,5 +74,7 @@ namespace HealthInspector.Repository
             doctorAvailability = dbContext.DoctorAvailabilities.FirstOrDefault(m => m.Id == id);
             return doctorAvailability;
         }
+
+        
     }
 }

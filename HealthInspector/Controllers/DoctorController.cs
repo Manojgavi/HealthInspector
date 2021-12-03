@@ -1,4 +1,5 @@
-﻿using HealthInspector.IControllerServices;
+﻿using AutoMapper;
+using HealthInspector.IControllerServices;
 using HealthInspector.IRepository;
 using HealthInspector.Models;
 using HealthInspector.ViewModels;
@@ -18,12 +19,16 @@ namespace HealthInspector.Controllers
         private readonly IDoctorRepository doctorRepository;
         private readonly IDoctorServices doctorServices;
         private readonly IAppointmentRepository appointmentRepository;
+        private readonly ITreatementRepository treatementRepository;
+        private readonly IMapper mapper;
 
-        public DoctorController(IDoctorRepository doctorRepository,IDoctorServices doctorServices,IAppointmentRepository appointmentRepository)
+        public DoctorController(IMapper mapper,ITreatementRepository treatementRepository,IDoctorRepository doctorRepository,IDoctorServices doctorServices,IAppointmentRepository appointmentRepository)
         {
             this.doctorRepository = doctorRepository;
             this.doctorServices = doctorServices;
             this.appointmentRepository = appointmentRepository;
+            this.treatementRepository = treatementRepository;
+            this.mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -108,6 +113,47 @@ namespace HealthInspector.Controllers
         {
             appointmentRepository.Reject(id);
             return RedirectToAction("Appointments");
+        }
+
+        public IActionResult Patients()
+        {
+            List<Treatment> treatments = new List<Treatment>();
+            treatments = doctorServices.GetPatientIdList((int)HttpContext.Session.GetInt32("SessionId"));
+            return View(treatments);
+        }
+        public IActionResult PatientDetails(int id,int treatementId)
+        {
+            List<AppointmentDataVm> appointmentDataVms = new List<AppointmentDataVm>();
+            appointmentDataVms = doctorServices.GetApprovedAppointmentDetails((int)HttpContext.Session.GetInt32("SessionId"));
+            AppointmentDataVm appointmentDataVm = new AppointmentDataVm();
+            appointmentDataVm = appointmentDataVms.Where(m => m.Id == id).FirstOrDefault();
+            appointmentDataVm.TreatementId = treatementId;
+            return View(appointmentDataVm);
+
+        }
+
+        public IActionResult UpdateTreatement(int id)
+        {
+            Treatment treatment = new Treatment();
+            TreatementVm treatementVm = new TreatementVm();
+            treatment = treatementRepository.GetTreatementById(id);
+            treatementVm = mapper.Map<TreatementVm>(treatment);
+            return View(treatementVm);
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult UpdateTreatement(TreatementVm treatementVm)
+        {
+            if(ModelState.IsValid)
+            {
+                Treatment treatment = new Treatment();
+                treatment = mapper.Map<Treatment>(treatementVm);
+                treatementRepository.UpdateTreatement(treatment);
+                return RedirectToAction("Patients");
+            }
+
+            
+            return View(treatementVm);
         }
     }
 }

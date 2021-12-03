@@ -16,5 +16,7 @@ namespace HealthInspector.IControllerServices
         List<DoctorDataViewModel> GetDoctorData(int id);
         List<AppointmentDataVm> GetAppointmentDetails(int id);
         void GeneratePatientRecord(int id);
+        List<Treatment> GetPatientIdList(int v);
+        List<AppointmentDataVm> GetApprovedAppointmentDetails(int v);
     }
 }

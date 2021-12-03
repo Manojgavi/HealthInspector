@@ -10,9 +10,12 @@ namespace HealthInspector.ViewModels
     {
         public int Id { get; set; }
         public string PatientName { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
         public string ClinicName { get; set; }
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public string Message { get; set; }
+        public int TreatementId { get; set; }
     }
 }
