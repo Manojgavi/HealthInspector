@@ -191,7 +191,7 @@ namespace HealthInspector.ControllerServices
             appointment = appointmentRepository.GetAppointment(id);
 
             DoctorAvailability doctorAvailability = new DoctorAvailability();
-            doctorAvailability = doctorRepository.GetDoctorAvailabilityById(appointment.Id);
+            doctorAvailability = doctorRepository.GetDoctorAvailabilityById(appointment.DoctorAvailabilityId);
 
             Clinic clinic = new Clinic();
             clinic = clinicRepository.GetClinic(doctorAvailability.ClinicId);

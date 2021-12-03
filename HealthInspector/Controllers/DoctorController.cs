@@ -36,7 +36,7 @@ namespace HealthInspector.Controllers
             {
                 List<DoctorDataViewModel> doctorDataViewModels = new List<DoctorDataViewModel>();
                 int a = (int)HttpContext.Session.GetInt32("SessionId");
-                doctorDataViewModels = doctorServices.GetDoctorData(int.Parse(TempData["Id"].ToString()));
+                doctorDataViewModels = doctorServices.GetDoctorData((int)HttpContext.Session.GetInt32("SessionId"));
                 return View(doctorDataViewModels);
             }
             catch(Exception )
@@ -50,7 +50,7 @@ namespace HealthInspector.Controllers
             try
             {
                 DoctorSpecalityVm doctorSpecality = new DoctorSpecalityVm();
-                doctorSpecality.UserId = int.Parse(TempData["Id"].ToString());
+                doctorSpecality.UserId = (int)HttpContext.Session.GetInt32("SessionId");
 
                 return View(doctorSpecality);
             }
@@ -77,7 +77,7 @@ namespace HealthInspector.Controllers
             {
                 DoctorAvailabilityVm doctorAvailability = new DoctorAvailabilityVm();
                 doctorAvailability = doctorServices.GenerateAvailability();
-                doctorAvailability.UserId = int.Parse(TempData["Id"].ToString());
+                doctorAvailability.UserId = (int)HttpContext.Session.GetInt32("SessionId");
                 return View(doctorAvailability);
             }
             catch(Exception )
@@ -105,8 +105,9 @@ namespace HealthInspector.Controllers
         }
         public IActionResult Approve(int id)
         {
-            appointmentRepository.Approve(id);
             doctorServices.GeneratePatientRecord(id);
+            appointmentRepository.Approve(id);
+            
             return RedirectToAction("Appointments");
         }
         public IActionResult Reject(int id)

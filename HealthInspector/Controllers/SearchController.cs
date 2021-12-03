@@ -1,5 +1,6 @@
 ﻿using HealthInspector.IControllerServices;
 using HealthInspector.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace HealthInspector.Controllers
 {
+    [Authorize(Roles = "Patient")]
     public class SearchController : Controller
     {
         private readonly ISearchServices searchServices;
