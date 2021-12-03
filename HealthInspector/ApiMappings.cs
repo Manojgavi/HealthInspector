@@ -29,6 +29,8 @@ namespace HealthInspector
             CreateMap<Feedback, FeedbackViewModel>().ReverseMap();
 
             CreateMap<Questionnaire, QuestionnaireViewModel>().ReverseMap();
+
+            CreateMap<PatientRecord, PatientRecordViewModel>().ReverseMap();
         }
     }
 }

@@ -8,8 +8,11 @@ namespace HealthInspector.Models
 {
     public class Clinic
     {
+
+
         [Key]
         public int Id { get; set; }
+
         public string ClinicName { get; set; }
         public string Address{ get; set; }
         public string ClinicId{ get; set; }
