@@ -2,6 +2,7 @@
 using HealthInspector.IRepository;
 using HealthInspector.Models;
 using HealthInspector.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace HealthInspector.Controllers
 {
+    [Authorize(Roles ="Admin,Doctor")]
     public class ClinicController : Controller
     {
         private readonly IClinicRepository clinicRepository;

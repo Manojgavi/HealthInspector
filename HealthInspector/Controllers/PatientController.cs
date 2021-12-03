@@ -2,6 +2,7 @@
 using HealthInspector.IRepository;
 using HealthInspector.Models;
 using HealthInspector.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,15 +12,18 @@ using System.Threading.Tasks;
 
 namespace HealthInspector.Controllers
 {
+    [Authorize(Roles ="Patient")]
     public class PatientController : Controller
     {
         private readonly IAppointmentRepository appointmentRepository;
         private readonly IPatientServices patientServices;
+        private readonly ITreatementRepository treatementRepository;
 
-        public PatientController(IAppointmentRepository appointmentRepository,IPatientServices patientServices)
+        public PatientController(ITreatementRepository treatementRepository,IAppointmentRepository appointmentRepository,IPatientServices patientServices)
         {
             this.appointmentRepository = appointmentRepository;
             this.patientServices = patientServices;
+            this.treatementRepository = treatementRepository;
         }
         public IActionResult Index()
         {
@@ -50,6 +54,12 @@ namespace HealthInspector.Controllers
             List<StatusDataViewModel> statusDataViewModels = new List<StatusDataViewModel>();
             statusDataViewModels = patientServices.GetStatusForUser((int)HttpContext.Session.GetInt32("SessionId"));
             return View(statusDataViewModels);
+        }
+        public IActionResult TreatementResults(int id)
+        {
+            Treatment treatment = new Treatment();
+            treatment = treatementRepository.GetTreatementByAppointmentId(id);
+            return View(treatment);
         }
     }
 }

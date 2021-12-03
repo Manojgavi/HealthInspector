@@ -17,6 +17,13 @@ namespace HealthInspector.Repository
             this.dbContext = dbContext;
         }
 
+        public Treatment GetTreatementByAppointmentId(int id)
+        {
+            Treatment treatment = new Treatment();
+            treatment = dbContext.Treatments.FirstOrDefault(m => m.AppointmentId == id);
+            return treatment;
+        }
+
         public Treatment GetTreatementById(int id)
         {
             Treatment treatment = new Treatment();

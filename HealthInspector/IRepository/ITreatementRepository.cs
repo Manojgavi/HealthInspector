@@ -13,5 +13,6 @@ namespace HealthInspector.IRepository
         List<Treatment> GetTreatements();
         Treatment GetTreatementById(int id);
         void UpdateTreatement(Treatment treatment);
+        Treatment GetTreatementByAppointmentId(int id);
     }
 }

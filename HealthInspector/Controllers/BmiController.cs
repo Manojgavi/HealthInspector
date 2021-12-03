@@ -58,12 +58,12 @@ namespace HealthInspector.Controllers
                     string result = "Your BMI is " + value.ToString("0.00") + " and you are Healthy";
                     return Content(result);
                 }
-                else if (value >= 24.9 && value < 30)
+                else 
                 {
                     string result = "Your BMI is " + value.ToString("0.00") + " and you are overweight";
                     return Content(result);
                 }
-                return null;
+                
             }
                    return View(user);
         }

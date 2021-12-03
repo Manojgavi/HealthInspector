@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HealthInspector.IRepository;
+using Microsoft.AspNetCore.Authorization;
+
 namespace HealthInspector.Controllers
 {
+    [Authorize(Roles ="Admin,Doctor")]
     public class LocalityController : Controller
     {
         private readonly ILocalityRepository localityRepository;
