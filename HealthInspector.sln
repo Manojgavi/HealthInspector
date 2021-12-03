@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthInspector", "HealthInspector\HealthInspector.csproj", "{7D94C609-0BC3-4A12-9E42-06198D993CBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthInspector", "HealthInspector\HealthInspector.csproj", "{7D94C609-0BC3-4A12-9E42-06198D993CBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthInspector.UnitTest", "HealthInspector.UnitTest\HealthInspector.UnitTest.csproj", "{EDDDEAC9-7D5A-4981-82A0-A5F44CE637AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7D94C609-0BC3-4A12-9E42-06198D993CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D94C609-0BC3-4A12-9E42-06198D993CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D94C609-0BC3-4A12-9E42-06198D993CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDDDEAC9-7D5A-4981-82A0-A5F44CE637AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDDEAC9-7D5A-4981-82A0-A5F44CE637AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDDEAC9-7D5A-4981-82A0-A5F44CE637AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDDEAC9-7D5A-4981-82A0-A5F44CE637AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
