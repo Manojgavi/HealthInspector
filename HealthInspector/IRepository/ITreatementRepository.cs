@@ -10,5 +10,8 @@ namespace HealthInspector.IRepository
     {
         string LastPatientId(string first);
         void PostTreatement(Treatment treatment);
+        List<Treatment> GetTreatements();
+        Treatment GetTreatementById(int id);
+        void UpdateTreatement(Treatment treatment);
     }
 }

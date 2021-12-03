@@ -1,0 +1,76 @@
+﻿@model HealthInspector.ViewModels.TreatementVm
+
+@{
+    ViewData["Title"] = "UpdateTreatement";
+}
+
+<h1>UpdateTreatement</h1>
+
+<h4>TreatementVm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateTreatement">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            @Html.HiddenFor(m=>m.Id)
+            <div class="form-group">
+                <label asp-for="AppointmentId" class="control-label"></label>
+                <input asp-for="AppointmentId" class="form-control" />
+                <span asp-validation-for="AppointmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Symptoms" class="control-label"></label>
+                <input asp-for="Symptoms" class="form-control" />
+                <span asp-validation-for="Symptoms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Diagnosis" class="control-label"></label>
+                <input asp-for="Diagnosis" class="form-control" />
+                <span asp-validation-for="Diagnosis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PatientId" class="control-label"></label>
+                <input asp-for="PatientId" class="form-control" />
+                <span asp-validation-for="PatientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TreatmentPlanned" class="control-label"></label>
+                <input asp-for="TreatmentPlanned" class="form-control" />
+                <span asp-validation-for="TreatmentPlanned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prescription" class="control-label"></label>
+                <input asp-for="Prescription" class="form-control" />
+                <span asp-validation-for="Prescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RevisitRequired" class="control-label"></label>
+                <input asp-for="RevisitRequired" class="form-control" />
+                <span asp-validation-for="RevisitRequired" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextRevisitDate" class="control-label"></label>
+                <input asp-for="NextRevisitDate" class="form-control" />
+                <span asp-validation-for="NextRevisitDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequencyRevisit" class="control-label"></label>
+                <input asp-for="FrequencyRevisit" class="form-control" />
+                <span asp-validation-for="FrequencyRevisit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

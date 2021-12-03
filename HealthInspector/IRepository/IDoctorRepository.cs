@@ -17,5 +17,6 @@ namespace HealthInspector.IRepository
         List<DoctorSpecality> GetDoctorSpecialities();
         List<DoctorAvailability> GetDoctorAvailability(int id);
         DoctorAvailability GetDoctorAvailabilityById(int id);
+        
     }
 }

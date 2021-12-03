@@ -39,6 +39,12 @@ namespace HealthInspector.Repository
             appointments = dbContext.Appointments.Where(m=>m.Status== "Registered").ToList();
             return appointments;
         }
+        public List<Appointment> GetApprovedAppointments()
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            appointments = dbContext.Appointments.Where(m => m.Status == "Approved").ToList();
+            return appointments;
+        }
 
         public void PostAppointment(Appointment appointment)
         {

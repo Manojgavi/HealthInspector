@@ -14,5 +14,6 @@ namespace HealthInspector.IRepository
         void Approve(int id);
         List<Appointment> GetAppointmentsForUser(int id);
         Appointment GetAppointment(int id);
+        List<Appointment> GetApprovedAppointments();
     }
 }

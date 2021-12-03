@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HealthInspector.Models.Treatment>
+
+@{
+    ViewData["Title"] = "Patients";
+}
+
+<h1>Patients</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            
+            <td>
+               
+                @Html.ActionLink("Details", "PatientDetails", new {  id=item.AppointmentId, treatementId=item.Id }) |
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
