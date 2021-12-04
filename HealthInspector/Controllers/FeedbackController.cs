@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HealthInspector.IRepository;
 using HealthInspector.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthInspector.Controllers
@@ -13,23 +15,28 @@ namespace HealthInspector.Controllers
     {
         private readonly IFeedbackRepository feedbackRepository;
         private readonly IMapper mapper;
+        private readonly IClinicRepository clinicRepository;
 
-
-        public FeedbackController(IMapper mapper, IFeedbackRepository feedbackRepository)
+        public FeedbackController(IClinicRepository clinicRepository,IMapper mapper, IFeedbackRepository feedbackRepository)
         {
             this.feedbackRepository = feedbackRepository;
             this.mapper = mapper;
+            this.clinicRepository = clinicRepository;
         }
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
         [HttpGet]
         public IActionResult Feedbackdata()
         {
-            return View();
+            FeedbackViewModel feedbackViewModel = new FeedbackViewModel();
+            feedbackViewModel.Clinics = clinicRepository.GetClinics();
+            
+            return View(feedbackViewModel);
         }
 
         [HttpPost]
@@ -42,6 +49,13 @@ namespace HealthInspector.Controllers
                return Content("Your Feedback have received sucessfully");
             }
             return View(user);
+        }
+        [Authorize(Roles="Admin")]
+        public IActionResult FeedbackList()
+        {
+            List<FeedbackDataViewModel> feedbackDataViewModels = new List<FeedbackDataViewModel>();
+            feedbackDataViewModels = feedbackRepository.GetFeedbackList();
+            return View(feedbackDataViewModels);
         }
 
     }

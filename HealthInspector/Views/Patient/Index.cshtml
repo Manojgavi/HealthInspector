@@ -1,0 +1,14 @@
+﻿@model HealthInspector.ViewModels.NotificationVM
+@Html.ActionLink("Search for  doctors", "Index", "Search")
+@Html.ActionLink("Treatement Results", "TreatementResults", "Patient")
+@Html.ActionLink("Status", "Status", "Patient")
+
+
+@if (Model.Appointment)
+{
+    <p>You have Appointment in coming 5 days check in status page</p>
+}
+@if (Model.Revisit)
+{
+    <p>You have Revisit in coming 5 days check your previous treatement results</p>
+}

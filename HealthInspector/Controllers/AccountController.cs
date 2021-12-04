@@ -120,7 +120,7 @@ namespace HealthInspector.Controllers
                         await HttpContext.SignInAsync(principal);
                         if (returnUrl == null)
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("RedirectAction", new { Role = userRepository.GetRole(loginViewModel.UserId) });
                         }
                         else
                         {
@@ -232,6 +232,27 @@ namespace HealthInspector.Controllers
             }
             
         }
+        public IActionResult RedirectAction(string Role)
+        {
+            if(Role=="Admin")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else if(Role=="Doctor")
+            {
+                return RedirectToAction("Index", "Doctor");
+
+            }
+            else if(Role=="Patient")
+            {
+                return RedirectToAction("Index", "Patient");
+            }
+            else
+            {
+                return Content("Something went Worng");
+            }
+        }
+        
         [NonAction]
         public void SendVerificationLinkEmail(string userId, string Email)
         {

@@ -37,7 +37,14 @@ namespace HealthInspector.Repository
 
         public void PostDoctorAvailability(DoctorAvailability doctorAvailability)
         {
-            dbContext.DoctorAvailabilities.Add(doctorAvailability);
+            try
+            {
+                dbContext.DoctorAvailabilities.Add(doctorAvailability);
+            }
+            catch(Exception)
+            {
+                dbContext.DoctorAvailabilities.Update(doctorAvailability);
+            }
             dbContext.SaveChanges();
         }
 

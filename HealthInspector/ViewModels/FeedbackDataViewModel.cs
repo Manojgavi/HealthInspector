@@ -4,18 +4,23 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HealthInspector.Models
+namespace HealthInspector.ViewModels
 {
-    public class Feedback
+    public class FeedbackDataViewModel
     {
-        [Key]
         public int Id { get; set; }
 
-        public int DoctorId {get; set;}
+        [Required]
+        [Display(Name = "Clinic")]
+        public string ClinicName { get; set; }
 
+        [Required]
         public string UserId { get; set; }
 
+        [Required]
+        [Display(Name = "Feedback")]
         public string Review { get; set; }
 
+        
     }
 }
