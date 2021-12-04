@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthInspector.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace HealthInspector.ViewModels
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Select Clinic")]
         public string DoctorId { get; set; }
 
         [Required]
@@ -20,6 +22,8 @@ namespace HealthInspector.ViewModels
         [Required]
         [Display(Name = "Feedback")]
         public string Review { get; set; }
+
+        public List<Clinic> Clinics { get; set; }
 
     }
 }

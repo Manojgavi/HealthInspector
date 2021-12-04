@@ -27,7 +27,35 @@ namespace HealthInspector.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            List<StatusDataViewModel> statusDataViewModels = new List<StatusDataViewModel>();
+            statusDataViewModels = patientServices.GetStatusForUser((int)HttpContext.Session.GetInt32("SessionId"));
+            NotificationVM notificationVM = new NotificationVM();
+           if(statusDataViewModels!=null)
+            {
+                foreach (var item in statusDataViewModels)
+                {
+                    Treatment treatment = new Treatment();
+                    treatment = treatementRepository.GetTreatementByAppointmentId(item.Id);
+                    int diff2 = 10;
+
+                    int diff = (item.Date-DateTime.Now).Days;
+                    if (treatment != null)
+                    {
+                        diff2 = (treatment.NextRevisitDate-DateTime.Now).Days;
+                    }
+
+                    if (diff <= 5 && diff>=0)
+                    {
+                        notificationVM.Appointment = true;
+                    }
+                    if (diff2 <=5 && diff2 >= 0)
+                    {
+                        notificationVM.Revisit = true;
+                    }
+                }
+            }
+            
+            return View(notificationVM);
         }
 
         public IActionResult BookAppointment(int availId)

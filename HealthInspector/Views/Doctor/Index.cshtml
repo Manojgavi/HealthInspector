@@ -7,7 +7,11 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="AddAvailability">Create New</a>
+    <a asp-action="AddAvailability">Add availability</a>
+    <a asp-action="Appointments">View Appointments</a>
+    <a asp-action="Patients">View Approved Patients</a>
+    <a asp-action="UpdateSpeciality">Add Speciality</a>
+
 </p>
 <table class="table">
     <thead>
@@ -50,11 +54,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ClinicName)
             </td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            </td>*@
         </tr>
 }
     </tbody>

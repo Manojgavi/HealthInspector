@@ -9,5 +9,6 @@ namespace HealthInspector.IRepository
     public interface IFeedbackRepository
     {
         void PostUser(FeedbackViewModel feedbackViewModel);
+        List<FeedbackDataViewModel> GetFeedbackList();
     }
 }
