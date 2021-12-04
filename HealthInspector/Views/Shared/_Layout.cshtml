@@ -30,43 +30,47 @@
                             <a class="nav-link" href="about.html">About</a>
                         </li>
                         <!--<li class="nav-item">
-                            <a class="nav-link" href="features.html">Features</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                            <div class="dropdown-menu" aria-labelledby="pagesMenu">
-                                <a class="dropdown-item" href="blog.html">Blog</a>
-                                <a class="dropdown-item" href="login.html">Login</a>
-                                <a class="dropdown-item" href="register.html">Register</a>
-                                <a class="dropdown-item" href="faq.html">FAQ</a>
-                                <a class="dropdown-item" href="404.html">404</a>
-                                <a class="dropdown-item" href="careers.html">Careers</a>
-                                <a class="dropdown-item" href="blog-single.html">Single blog</a>
-                                <a class="dropdown-item" href="privacy-policy.html">Privacy policy</a>
-                            </div>
-                        </li>-->
+            <a class="nav-link" href="features.html">Features</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+            <div class="dropdown-menu" aria-labelledby="pagesMenu">
+                <a class="dropdown-item" href="blog.html">Blog</a>
+                <a class="dropdown-item" href="login.html">Login</a>
+                <a class="dropdown-item" href="register.html">Register</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="404.html">404</a>
+                <a class="dropdown-item" href="careers.html">Careers</a>
+                <a class="dropdown-item" href="blog-single.html">Single blog</a>
+                <a class="dropdown-item" href="privacy-policy.html">Privacy policy</a>
+            </div>
+        </li>-->
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">contact</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav mt-2 mt-lg-0">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item mr-2 mb-3 mb-lg-0">
-                                <a class="btn btn-secondary" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
- }
-                        else
-                        {
-                            <li class="nav-item mr-2 mb-3 mb-lg-0">
-                                <a class="btn btn-secondary" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-secondary" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-}
+                    @*<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <label>Health Inspector</label>
+                    </ul>*@
+                        
+                        <ul class="navbar-nav mt-2 mt-lg-0">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item mr-2 mb-3 mb-lg-0">
+                                    <a class="btn btn-secondary" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item mr-2 mb-3 mb-lg-0">
+                                    <a class="btn btn-secondary" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-secondary" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                            }
 
-                    </ul>
+                        </ul>
                 </div>
             </nav>
             @*<div class="header-content">
