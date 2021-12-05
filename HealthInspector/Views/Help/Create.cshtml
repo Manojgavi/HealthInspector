@@ -1,0 +1,78 @@
+﻿@model HealthInspector.ViewModels.HelpViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Report.css" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="overlay">
+                <h1>Need help?</h1>
+                <br />
+                <br />
+                <p>
+                    Submit your issue here on this page.
+                    Feel free to contact us on these pages or our office.
+                </p>
+                <span>
+                    <p>Contact us on social media</p>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
+                </span>
+            </div>
+        </div>
+        <div class="right">
+            <br />
+            <br />
+            <br />
+            <br />
+            <h5>Report</h5>
+            <br />
+            <br />
+            <p>Don't have an account? <a href="~/Views/Account/Register.cshtml">Create Your Account</a> it takes less than a minute</p>
+            <br />
+            <br />
+            <br />
+            <div class="inputs">
+                <form action="#" method="post" class="agile_form">
+
+                    <input type="text" id="id" name="UserId" placeholder=" Userid">
+                    <br />
+                    <input type="text" id="issue" name="Issue" placeholder=" Issue">
+                    <br />
+                    <br />
+                    <textarea id="description" name="description" placeholder=" Describe" style="height:50px"></textarea>
+                    <br />
+                    <br />
+
+                    <input type="submit" value="Submit">
+
+                </form>
+            </div>
+            @*@using (Html.BeginForm("Create", "Help", FormMethod.Post, new { @class = "agile_form" }))*@
+            <!--{-->
+            @*<label for="id">UserId</label>
+        <input type="text" id="id" name="UserId" placeholder="Type your userid here">*@
+            @*<label for="id">User Id: </label>*@
+            <!--<input type="text" id="id" name="UserId" placeholder="User Id">-->
+            @*<label for="issue">Issue: </label>*@
+            <!--<input type="text" id="issue" name="Issue" placeholder="Type your issue here">-->
+            @*<label for="description">Description: </label>*@
+            <!--<textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea>
+
+        <input type="submit" value="Submit" class="agileinfo" />
+    }-->
+        </div>
+    </div>
+</body>
+</html>

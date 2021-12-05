@@ -36,6 +36,7 @@ namespace HealthInspector
             services.AddAutoMapper(typeof(ApiMappings));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
+            services.AddScoped<IHelpRepository, HelpRepository>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
