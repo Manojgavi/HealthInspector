@@ -41,7 +41,7 @@ namespace HealthInspector.Controllers
             if (ModelState.IsValid)
             {
                 questionnaireRepository.PostUser(user);
-                return Content("Your Feedback have received sucessfully");
+                return RedirectToAction("Index", "Home");
             }
             return View(user);
         }

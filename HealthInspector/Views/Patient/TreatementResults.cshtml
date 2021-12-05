@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "TreatementResults";
+    Layout = "~/Views/Patient/_Layout.cshtml";
 }
 
-<h1>TreatementResults</h1>
+<h1>Treatement Results</h1>
 
 <div>
-    <h4>Treatment</h4>
+    @*<h4>Treatment</h4>*@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -72,7 +73,6 @@
         </dd>
     </dl>
 </div>
-<div>
-    
-    <a asp-action="Status">Back to List</a>
+<div> 
+    <a asp-action="Status"><button type="button" class="btn btn-dark btn-rounded btn-fw btn-sm">Go to List</button></a>
 </div>

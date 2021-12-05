@@ -2,11 +2,12 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Admin/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Add Locality</h1>
 
-<h4>Locality</h4>
+@*<h4>Locality</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,7 +26,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index"><button type="button" class="btn btn-dark btn-rounded btn-fw btn-sm">Go to List</button></a>
 </div>
 
 @section Scripts {

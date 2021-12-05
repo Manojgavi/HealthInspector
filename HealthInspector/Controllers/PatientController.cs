@@ -73,7 +73,9 @@ namespace HealthInspector.Controllers
             if(ModelState.IsValid)
             {
                 appointmentRepository.PostAppointment(appointment);
-                return Content("AppointmentBooked Successfully");
+                //TempData["msg"] = "<script>alert('Appointment Booked Successfully')</script>";
+                //ViewBag.Alert = "Appointment Booked Successfully";
+                return RedirectToAction("Status");
             }
             return View(appointment);
         }

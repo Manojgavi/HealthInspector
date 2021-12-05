@@ -2,74 +2,75 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>List of Clinics</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.ClinicName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClinicId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacilitiesAvailable)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Website)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Locality)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.ClinicName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClinicId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacilitiesAvailable)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Website)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Locality)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="table-responsive pt-3">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ClinicName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClinicId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FacilitiesAvailable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Website)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Locality)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-info">
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClinicName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClinicId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FacilitiesAvailable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Website)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Locality)
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+ </div>
+<div>
+    <a asp-action="Create"><button type="button" class="btn btn-dark btn-rounded btn-fw btn-sm">Add New</button></a>
+</div>

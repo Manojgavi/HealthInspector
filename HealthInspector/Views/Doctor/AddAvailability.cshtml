@@ -2,11 +2,10 @@
 
 @{
     ViewData["Title"] = "AddAvailability";
+    Layout = "~/Views/Doctor/_Layout.cshtml";
 }
 
-<h1>AddAvailability</h1>
-
-<h4>DoctorAvailabilityVm</h4>
+<h1>Add Availability</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -33,7 +32,7 @@
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ClinicId" class="control-label"></label>
+                <label asp-for="ClinicId" class="control-label">Clinic Id</label>
                 @Html.DropDownListFor(x => x.ClinicId, new SelectList(Model.Clinic, "Id", "ClinicName", Model.ClinicId), "--Select--", new { @class = "form-control" })
 
                 <span asp-validation-for="ClinicId" class="text-danger"></span>
@@ -51,7 +50,4 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

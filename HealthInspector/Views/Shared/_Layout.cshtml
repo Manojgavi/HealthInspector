@@ -27,27 +27,12 @@
                             <a class="nav-link" asp-area="" asp-controller="Bmi" asp-action="CreateBmi">Bmi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" asp-area="" asp-controller="Feedback" asp-action="Feedbackdata">Feedback</a>
                         </li>
-                        <!--<li class="nav-item">
-            <a class="nav-link" href="features.html">Features</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-            <div class="dropdown-menu" aria-labelledby="pagesMenu">
-                <a class="dropdown-item" href="blog.html">Blog</a>
-                <a class="dropdown-item" href="login.html">Login</a>
-                <a class="dropdown-item" href="register.html">Register</a>
-                <a class="dropdown-item" href="faq.html">FAQ</a>
-                <a class="dropdown-item" href="404.html">404</a>
-                <a class="dropdown-item" href="careers.html">Careers</a>
-                <a class="dropdown-item" href="blog-single.html">Single blog</a>
-                <a class="dropdown-item" href="privacy-policy.html">Privacy policy</a>
-            </div>
-        </li>-->
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">contact</a>
+                            <a class="nav-link" asp-area="" asp-controller="Questionnaire" asp-action="QuestionnaireData">Questionnaire</a>
                         </li>
+                        
                     </ul>
                     @*<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <label>Health Inspector</label>
@@ -107,7 +92,7 @@
                     <h2 class="mb-0">Do you want to know more or just have a question? write to us.</h2>
                 </div>
                 <div class="col-md-4 col-lg-5 col-xl-6 py-3 py-md-0 d-md-flex align-items-center justify-content-end">
-                    <a href="contact.html" class="btn btn-danger btn-lg">Contact form</a>
+                    <a asp-area="" asp-controller="Feedback" asp-action="Feedbackdata" class="btn btn-danger btn-lg">Feedback</a>
                 </div>
             </div>
             <div class="row footer-widget-area">
