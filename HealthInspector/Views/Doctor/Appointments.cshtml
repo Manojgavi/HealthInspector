@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HealthInspector.ViewModels.AppointmentDataVm>
+
+@{
+    ViewData["Title"] = "Appointments";
+    Layout = "~/Views/Doctor/_Layout.cshtml";
+}
+
+<h1>Appointments</h1>
+<div class="table-responsive pt-3">
+    <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.PatientName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClinicName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-info">
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PatientName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClinicName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Message)
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success btn-rounded btn-fw">
+                                @Html.ActionLink("Approve", "Approve", new { id = item.Id })</button>  | 
+                            <button type="button" class="btn btn-danger btn-rounded btn-fw">
+                                @Html.ActionLink("Reject", "Reject", new { id = item.Id })
+                                </button>
+                                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

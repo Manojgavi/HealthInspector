@@ -1,0 +1,32 @@
+﻿@model HealthInspector.ViewModels.DoctorSpecalityVm
+
+@{
+    ViewData["Title"] = "UpdateSpeciality";
+    Layout = "~/Views/Doctor/_Layout.cshtml";
+}
+
+<h1>Update Speciality</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateSpeciality">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="Speciality" class="control-label"></label>
+                @Html.DropDownListFor(x => x.Speciality, new SelectList(Model.SpecialityList, "Text", "Value", Model.Speciality), "--Select--", new { @class = "form-control" })
+                <span asp-validation-for="Speciality" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>*@
+            @Html.HiddenFor(m => m.UserId)
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

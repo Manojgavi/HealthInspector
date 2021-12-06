@@ -1,0 +1,88 @@
+﻿@model IEnumerable<HealthInspector.ViewModels.StatusDataViewModel>
+
+@{
+    ViewData["Title"] = "Status";
+    Layout = "~/Views/Patient/_Layout.cshtml";
+}
+
+
+
+<h1>Status</h1>
+
+@*<p>
+    <a asp-action="Index">Index</a>
+</p>*@
+<div class="table-responsive pt-3">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DoctorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClinicName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-info">
+            @foreach (var item in Model)
+            {
+            <tr class="table-info">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClinicName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                @if (item.Status == "Approved")
+                {
+                    <td>
+                        <label class="badge badge-success">@Html.DisplayFor(modelItem => item.Status)</label>
+                    </td>
+                }
+                @if (item.Status == "Registered")
+                {
+                    <td>
+                        <label class="badge badge-info">@Html.DisplayFor(modelItem => item.Status)</label>
+                    </td>
+                }
+                @if (item.Status == "Rejected")
+                {
+                    <td>
+                        <label class="badge badge-danger">@Html.DisplayFor(modelItem => item.Status)</label>
+                    </td>
+                }
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>*@
+                <td>
+                    @Html.ActionLink("Treatement Results", "TreatementResults", new { id = item.Id })
+                </td>
+                @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+            </tr>
+            }
+        </tbody>
+    </table>
+ </div>

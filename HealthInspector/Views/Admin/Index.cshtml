@@ -1,0 +1,17 @@
+﻿@*
+        For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+    @{
+    }
+    @Html.ActionLink("Add Clinic", "Create", "Clinic")
+    @Html.ActionLink("Clinic List", "Index", "Clinic")
+    @Html.ActionLink("Add Locality", "Create", "Locality")
+    @Html.ActionLink("View Feedbacks", "FeedbackList", "Feedback")*@
+
+@{
+    ViewData["Index"] = "Admin Dashboard";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome Admin</h1>
+</div>

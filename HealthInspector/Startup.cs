@@ -36,7 +36,29 @@ namespace HealthInspector
             services.AddAutoMapper(typeof(ApiMappings));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
+
             services.AddScoped<IHelpRepository, HelpRepository>();
+
+
+            services.AddScoped<IBmiRepository, BmiRepository>();
+            services.AddScoped<IBmiServices, BmiServices>();
+
+            services.AddScoped<IClinicServices, ClinicServices>();
+            services.AddScoped<ILocalityRepository, LocalityRepository>();
+            services.AddScoped<IClinicRepository, ClinicRepository>();
+
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+            services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
+
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IDoctorServices, DoctorServices>();
+
+            services.AddScoped<ISearchServices, SearchServices>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+
+            services.AddScoped<IPatientServices, PatientServices>();
+            services.AddScoped<ITreatementRepository, TreatementRepository>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -44,6 +66,11 @@ namespace HealthInspector
             });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);//You can set Time   
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +88,7 @@ namespace HealthInspector
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
 

@@ -1,0 +1,120 @@
+﻿@model HealthInspector.ViewModels.QuestionnaireViewModel
+
+@{
+    ViewData["Title"] = "QuestionnaireData";
+}
+
+<h2>Questionnaire Form</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="QuestionnaireData">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+
+
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Question1" class="control-label"></label>
+
+                <br>
+                <input type="radio" class="btn-check" name="Question1" id="option1" value="Excellent" autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option1">Excellent</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question1" id="option2"  value="Good"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option2">Good</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question1" id="option3"  value="Moderate"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option3">Moderate</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question1" id="option4"  value="Bad"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option4">Bad</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question1" id="option5"  value="Worst"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option5">Worst</label>
+                <br>
+                <span asp-validation-for="Question1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question2" class="control-label"></label>
+                <br>
+                @*<input asp-for="Question2" class="form-control" />*@
+                <input type="radio" class="btn-check" name="Question2" id="option6" value="Excellent"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option6">Excellent</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question2" id="option7" value="Good"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option7">Good</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question2" id="option8" value="Moderate"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option8">Moderate</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question2" id="option9" value="Bad"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option9">Bad</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question2" id="option10" value="Worst"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option10">Worst</label>
+                <br>
+                <span asp-validation-for="Question2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question3" class="control-label"></label>
+                <br>
+                <input type="radio" class="btn-check" name="Question3" id="option11" value="Yes"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option11">Yes</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question3" id="option12" value="No"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option12">No</label>
+                <br>
+                <span asp-validation-for="Question3" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question4" class="control-label"></label>
+                <br>
+                <input type="radio" class="btn-check" name="Question4" id="option13" value="Yes"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option13">Yes</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question4" id="option14" value="No"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option14">No</label>
+                <br>
+                <span asp-validation-for="Question4" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question5" class="control-label"></label>
+                <br>
+                <input type="radio" class="btn-check" name="Question5" id="option15" value="Excellent"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option15">Excellent</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question5" id="option16" value="Good"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option16">Good</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question5" id="option17" value="Moderate"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option17">Moderate</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question5" id="option18" value="Bad"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option18">Bad</label>
+                <br>
+                <input type="radio" class="btn-check" name="Question5" id="option19" value="Worst"  autocomplete="off" checked>
+                <label class="btn btn-secondary" for="option19">Worst</label>
+                <br>
+                <span asp-validation-for="Question5" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Feedback" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
