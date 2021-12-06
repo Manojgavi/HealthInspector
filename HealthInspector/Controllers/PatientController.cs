@@ -37,6 +37,7 @@ namespace HealthInspector.Controllers
                     Treatment treatment = new Treatment();
                     treatment = treatementRepository.GetTreatementByAppointmentId(item.Id);
                     int diff2 = 10;
+                    
 
                     int diff = (item.Date-DateTime.Now).Days;
                     if (treatment != null)
@@ -51,6 +52,10 @@ namespace HealthInspector.Controllers
                     if (diff2 <=5 && diff2 >= 0)
                     {
                         notificationVM.Revisit = true;
+                    }
+                    if (diff <= 0 && diff2 >= -1)
+                    {
+                        notificationVM.Review = true;
                     }
                 }
             }

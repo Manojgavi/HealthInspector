@@ -14,5 +14,6 @@ namespace HealthInspector.ViewModels
         }
         public bool Appointment { get; set; }
         public bool Revisit { get; set; }
+        public bool Review { get; set; }
     }
 }

@@ -21,3 +21,8 @@
 {
     <p>You have Revisit in coming 5 days check your previous treatement results</p>
 }
+@if (Model.Review)
+{
+    <p>Please take time to give feedback </p><a asp-area="" asp-controller="Account" asp-action="Logout"> Feedback </a>
+
+}
