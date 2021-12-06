@@ -42,7 +42,38 @@ namespace HealthInspector.Controllers
 
             return View(model);
         }
+        public IActionResult ListOfIssues()
+        {
+            List<Help> helps = new List<Help>();
+            helps = _db.Helps.ToList();
+            return View(helps);
+        }
+        public IActionResult Resolution(int id)
+        {
+            Help help = new Help();
+            help = _db.Helps.FirstOrDefault(m => m.Id == id);
+            return View(help);
+        }
+        [HttpPost]
+        public IActionResult Resolution(Help help)
+        {
+            if(ModelState.IsValid)
+            {
+                _db.Helps.Update(help);
+                _db.SaveChanges();
+                return RedirectToAction("ListOfIssues");
+            }
+            return View(help);
+        }
 
-       
+
+        public IActionResult ListOfResolutions()
+        {
+            List<Help> helps = new List<Help>();
+            helps = _db.Helps.ToList();
+            return View(helps);
+        }
+
+
     }
 }

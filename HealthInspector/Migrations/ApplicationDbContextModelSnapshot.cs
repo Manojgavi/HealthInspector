@@ -22,26 +22,26 @@ namespace HealthInspector.Migrations
 
             modelBuilder.Entity("HealthInspector.Models.Help", b =>
             {
-             b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-             b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<int>("Id")
+                           .ValueGeneratedOnAdd()
+                           .HasColumnType("int")
+                           .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                b.Property<string>("Description")
+                           .IsRequired()
+                           .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Issue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Issue")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Resolution")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Resolution")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        b.HasKey("Id");
-                         b.ToTable("helps");
-            }
+                b.Property<string>("UserId")
+                    .IsRequired();
+                b.HasKey("Id");
+                b.ToTable("helps");
+            });
 
             modelBuilder.Entity("HealthInspector.Models.Appointment", b =>
 
