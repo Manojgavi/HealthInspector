@@ -1,8 +1,17 @@
 ﻿@model HealthInspector.ViewModels.NotificationVM
-@Html.ActionLink("Search for  doctors", "Index", "Search")
-@Html.ActionLink("Treatement Results", "TreatementResults", "Patient")
-@Html.ActionLink("Status", "Status", "Patient")
+@*@Html.ActionLink("Search for  doctors", "Index", "Search")
+    @Html.ActionLink("Treatement Results", "TreatementResults", "Patient")
+    @Html.ActionLink("Status", "Status", "Patient")*@
 
+
+
+@{
+    ViewData["Index"] = "Patient Dashboard";
+    Layout = "~/Views/Patient/_Layout.cshtml";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome Patient</h1>
+</div>
 
 @if (Model.Appointment)
 {

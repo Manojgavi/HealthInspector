@@ -2,12 +2,12 @@
 
 @{
     ViewData["Title"] = "PatientDetails";
+    Layout = "~/Views/Doctor/_Layout.cshtml";
 }
 
-<h1>PatientDetails</h1>
+<h1>Patient Appointment Details</h1>
 
-<div>
-    <h4>AppointmentDataVm</h4>
+@*<div>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -53,8 +53,68 @@
             @Html.DisplayFor(model => model.Message)
         </dd>
     </dl>
+</div>*@
+
+<div class="table-responsive pt-3">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClinicName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-info">
+            <tr class="table-info">
+
+                <td>
+                    @Html.DisplayFor(model => model.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ClinicName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Message)
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
 <div>
-    @Html.ActionLink("UpdateTreatement", "UpdateTreatement", new { id=Model.TreatementId }) |
-    <a asp-action="Appointments">Back to List</a>
+    <button type="button" class="btn btn-dark btn-rounded btn-fw">
+        @Html.ActionLink("UpdateTreatement", "UpdateTreatement", new { id = Model.TreatementId })</button> |
+        <a asp-action="Patients"><button type="button" class="btn btn-dark btn-rounded btn-fw btn-sm">Go to List</button></a>
 </div>

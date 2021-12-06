@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Admin/_Layout.cshtml";
     @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -16,9 +17,8 @@
     </script>*@
 }
 
-<h1>Create</h1>
-
-<h4>ClinicViewModel</h4>
+<h1>Add Clinic</h1>
+@*<h4>ClinicViewModel</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -73,10 +73,12 @@
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index"><button type="button" class="btn btn-dark btn-rounded btn-fw btn-sm">Go to List</button></a>
 </div>
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
 @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>

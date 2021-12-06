@@ -2,13 +2,11 @@
 
 @{
     ViewData["Title"] = "SearchResult";
+    Layout = "~/Views/Patient/_Layout.cshtml";
 }
 
-<h1>SearchResult</h1>
+<h1>Search Result</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -64,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.Locality)
                 </td>
                 <td>
-                    @Html.ActionLink("BookAppointment", "BookAppointment","Patient", new { availId = item.Id  }) |
+                    @Html.ActionLink("BookAppointment", "BookAppointment","Patient", new { availId = item.Id  })
                     @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
