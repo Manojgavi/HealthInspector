@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Help>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HELP | IB-Media</title>
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <div><h1>HELP</h1></div>
+    </header>
+
+    <section class="ib-faq js-ib-faq">
+        <ul class="faq-categories">
+            <li><a class="faq-category" href="#topic-1">FAQs<i class="mob"></i></a></li>
+            <li><a class="faq-category" href="#topic-2">Report<i class="mob"></i></a></li>
+            <li><a class="faq-category" href="#topic-3">Contact<i class="mob"></i></a></li>
+            <li><a class="faq-category" href="#topic-4">Resolutions<i class="mob"></i></a></li>
+            
+        </ul> <!-- faq-categories -->
+
+        <div class="faq-items">
+            <ul id="topic-1" class="faq-group">
+                <li class="faq-title"><h2>FAQs</h2></li>
+                <li class="faq-item">
+                    <a class="faq-question" href="#0"><span>How to Register</span></a>
+                    <div class="faq-response">
+                        <div class="text-block">
+                            <p>Please do the following:</p>
+                            <br />
+                            <p>1. Go to Homepage</p>
+                            <br />
+                            <p>2.Click on Register</p>
+                            <br />
+                            <p>3.Fill in the details with a valid Email-Id</p>
+                            <br />
+                            <p>4.For any further queries, check FAQs on Help page or Contact us</p>                            
+                        </div>
+                    </div> <!-- faq-response -->
+                </li>
+
+                <li class="faq-item">
+                    <a class="faq-question" href="#0"><span>How to Login</span></a>
+                    <div class="faq-response">
+                        <div class="text-block">
+                            <p>Please do the following:</p>
+                            <br />
+                            <p>1. Go to Homepage</p>
+                            <br />
+                            <p>2.Click on Login</p>
+                            <br />
+                            <p>3.Provide valid UserId and Password</p>
+                            <br />                            
+                            <p>4.For any further queries, check FAQs on Help page or Contact us</p>                           
+                        </div>
+                    </div> <!-- faq-response -->
+                </li>
+
+                <li class="faq-item">
+                    <a class="faq-question" href="#0"><span>How to recover password or UserId</span></a>
+                    <div class="faq-response">
+                        <div class="text-block">
+                            <p>Please do the following:</p>
+                            <br />
+                            <p>1. Go to Homepage</p>
+                            <br />
+                            <p>2.Click on Login</p>
+                            <br />
+                            <p>3.Click on Forgot Password or UserId</p>
+                            <br />
+                            <p>4.Give the details and answer the security questions</p>
+                            <br />
+                            <p>5.For any further queries, check FAQs on Help page or Contact us</p>
+                        </div>
+                    </div> <!-- faq-response -->
+                </li>
+
+            </ul> <!-- faq-group -->
+
+            <ul id="topic-2" class="faq-group">
+                <li class="faq-title"><h2>Report</h2></li>
+                <li class="faq-item">
+                    <a class="faq-question" href="#0"><span>Report any Technical issue</span></a>
+                    <div class="faq-response">
+                        <div class="text-block">
+                            <p>Click here:</p>
+                            <div>@Html.ActionLink("Report issue", "Create")</div>
+                        </div>
+                    </div> <!-- faq-response -->
+                </li>
+
+                
+            </ul> <!-- faq-group -->
+
+            <ul id="topic-3" class="faq-group">
+                <li class="faq-title"><h2>Contact Us</h2></li>
+                <li class="faq-item">
+                    <a class="faq-question" href="#0"><span>To report any issue</span></a>
+                    <div class="faq-response">
+                        <div class="text-block">
+                            <p>Contact this number:</p>
+                            <br />
+                            <p>+91 7013800404</p>
+                            <br />
+                            <p>+91 7008342607</p>
+                        </div>
+                    </div> <!-- faq-response -->
+                </li>
+
+               
+            </ul> <!-- faq-group -->
+
+            <ul id="topic-4" class="faq-group">
+                <li class="faq-title"><h2>Resolutions</h2></li>
+                <li class="faq-item">
+                    <a class="faq-question" href="#0"><span>Provided by admin</span></a>
+                    <div class="faq-response">
+                        <div class="text-block">
+                            <p>Insert Table</p>
+                        </div>
+                    </div> <!-- faq-response -->
+                </li>
+
+               
+            </ul> <!-- faq-group -->
+
+            
+
+        </div> <!-- faq-items -->
+
+        <a href="#0" class="faq-close-item text-replace">Close</a>
+
+        <div class="faq-overlay" aria-hidden="true"></div>
+    </section> <!-- ib-faq -->
+
+
+    <script src="~/js/faq.js"></script>
+</body>

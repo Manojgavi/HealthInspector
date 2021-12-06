@@ -11,6 +11,9 @@ namespace HealthInspector.Data
         }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Help> Helps { get; set; }
+
+
         public DbSet<Bmi> Bmis { get; set; }
 
         public DbSet<Locality> Localities { get; set; }
@@ -25,6 +28,7 @@ namespace HealthInspector.Data
         public DbSet<Appointment> Appointments { get; set; }
 
         public DbSet<Treatment> Treatments { get; set; }
+
 
     }
 }

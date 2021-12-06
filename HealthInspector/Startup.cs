@@ -37,6 +37,9 @@ namespace HealthInspector
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
 
+            services.AddScoped<IHelpRepository, HelpRepository>();
+
+
             services.AddScoped<IBmiRepository, BmiRepository>();
             services.AddScoped<IBmiServices, BmiServices>();
 

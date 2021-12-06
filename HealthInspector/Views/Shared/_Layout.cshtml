@@ -32,7 +32,11 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Questionnaire" asp-action="QuestionnaireData">Questionnaire</a>
                         </li>
-                        
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Help" asp-action="Index">Help</a>
+                        </li>
+
                     </ul>
                     @*<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <label>Health Inspector</label>
@@ -84,6 +88,12 @@
             @RenderBody()
         </main>
     </div>
+
+
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
     <footer class="foi-footer text-white">
         <div class="container">
@@ -166,6 +176,7 @@
     <script src="~/theme1/assets/vendors/jquery/jquery.min.js"></script>
     <script src="~/theme1/assets/vendors/popper.js/popper.min.js"></script>
     <script src="~/theme1/assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

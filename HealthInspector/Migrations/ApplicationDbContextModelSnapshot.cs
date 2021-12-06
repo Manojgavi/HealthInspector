@@ -19,12 +19,38 @@ namespace HealthInspector.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+
+            modelBuilder.Entity("HealthInspector.Models.Help", b =>
+            {
+             b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+             b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Issue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Resolution")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        b.HasKey("Id");
+                         b.ToTable("helps");
+            }
+
             modelBuilder.Entity("HealthInspector.Models.Appointment", b =>
+
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
 
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
@@ -170,9 +196,12 @@ namespace HealthInspector.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                   
 
                     b.ToTable("Feedbacks");
                 });
@@ -261,6 +290,7 @@ namespace HealthInspector.Migrations
                     b.HasIndex("AppointmentId");
 
                     b.ToTable("Treatments");
+
                 });
 
             modelBuilder.Entity("HealthInspector.Models.User", b =>
